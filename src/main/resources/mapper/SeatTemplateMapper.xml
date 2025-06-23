@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinemabackend.mapper.SeatTemplateMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.cinemabackend.entity.SeatTemplate">
+        <id column="template_id" property="id"/>
+        <result column="hall_id" property="hallId"/>
+        <result column="row_label" property="rowLabel"/>
+        <result column="col_num" property="colNum"/>
+        <result column="seat_type" property="seatType"/>
+    </resultMap>
+
+    <select id="findByHallId" resultMap="BaseResultMap">
+        SELECT template_id, hall_id, row_label, col_num, seat_type 
+        FROM seat_template 
+        WHERE hall_id = #{hallId} 
+        ORDER BY row_label ASC, col_num ASC
+    </select>
+</mapper>
